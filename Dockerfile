@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-ENV DOMAIN="http://13.127.174.81:8000" \
+ENV DOMAIN="http://13.233.167.64:8000" \
     PORT=8000 \
     STATIC_DIR="./client" \
 
