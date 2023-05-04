@@ -1,15 +1,20 @@
-pipeline {
-   agent any
-   stages {
-         stage('Build Docker Image') {
-  steps {
-    sh 'docker build -t image1 .'
-  }
-}
-     stage('Run Docker Container') {
-  steps {
-    sh 'docker run -d -p 8000:8000 --name cont1 image1'
-  }
-}
-}
+pipeline{
+    agent any
+    stages {
+        stage('checkout code') {
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/swathi-1996/Node_js_Project.git']])
+            }
+        }
+        stage('build docker image'){
+            steps{
+                sh 'docker build -t swa .'
+            }
+        }
+        stage('build container'){
+            steps{
+                sh 'docker run -itd -p 8000:8000 --name container2 swa'
+            }
+        }
+    }
 }
